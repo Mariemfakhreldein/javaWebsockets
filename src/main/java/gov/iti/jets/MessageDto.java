@@ -28,4 +28,13 @@ public class MessageDto {
     public String getGender() {
         return gender;
     }
+
+    @Override
+    public String toString() {
+        return "MessageDto{" +
+                "userName='" + userName + '\'' +
+                ", content='" + content + '\'' +
+                ", gender='" + gender + '\'' +
+                '}';
+    }
 }

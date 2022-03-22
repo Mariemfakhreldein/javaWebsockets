@@ -1,3 +1,5 @@
-gov\iti\jets\ChatSessionController.class
 gov\iti\jets\MessageDto.class
+gov\iti\jets\ChatSessionController.class
+gov\iti\jets\LoadUsersServlet.class
+gov\iti\jets\UserInfo.class
 gov\iti\jets\MyServerEndPoint.class
