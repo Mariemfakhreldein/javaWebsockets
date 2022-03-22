@@ -40,7 +40,7 @@ public class MyServerEndPoint {
         chatusersSet.add(session);
 
         Map<String, String> parameters =   session.getPathParameters();
-        users.put(session.getId(), List.of(parameters.get("username"), parameters.get("gender")) );
+        ChatSessionController.addUser(session.getId(), parameters.get("username") +"+"+ parameters.get("gender"));
 
 //        session.getBasicRemote();
         broadcast("online");
@@ -57,10 +57,10 @@ public class MyServerEndPoint {
     public void close(Session session) {
         chatusersSet.remove(session);
         MessageDto message = new MessageDto();
-        Map<String,String> chatusers = chatSessionController.getUsers();
-        String chatuser = chatusers.get(session.getId());
-        message.setUserName(chatuser);
-        chatusers.remove(chatuser);
+//        Map<String,String> chatusers = chatSessionController.getUsers();
+//        String chatuser = chatusers.get(session.getId());
+//        message.setUserName(chatuser);
+//        chatusers.remove(chatuser);
         message.setContent("Disconnected from server");
     }
 
