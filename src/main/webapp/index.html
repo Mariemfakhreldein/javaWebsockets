@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+
+<body >
+
+
+    <div id="login" style="padding: 5px; margin: 50px ; border: 1px solid black ;">
+    <h1 style="background-color:rgba(0, 206, 209, 0.192) ; justify-content: center; text-align: center;">Login page</h1>
+
+        <div style="display: flex; gap:70px;">
+            <img src="309666.png" alt="chatting icon" style="width: 300px;">
+
+            <div style="align-items: center; justify-content: center ;padding-top: 100px;">
+
+                <input type="text" id="nameField">
+                <!-- <input type="text" id="test"> -->
+                <br/>
+                <input type="radio" name="gender" value="male" id="male">
+                <label for="male">Male</label>
+                <input type="radio" name="gender" value="female" id="female">
+                <label for="female">Female</label>
+                <br/>
+
+                <input style="background-color: aqua; border-radius: 10px;" type="button" id="submit" value="Let's start"/>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+
+        var gender;
+        var webSocket;
+
+        function getGender(){
+            var selection = document.getElementsByName('gender');   
+            for(i = 0; i < selection.length; i++) {
+                    if(selection[i].checked)
+                    gender = selection[i].value;
+            }
+         }
+
+    var submit = document.getElementById('submit');
+    var name;
+
+    submit.addEventListener('click', ()=>{
+        getGender(); 
+        name = document.getElementById('nameField').value;
+        // name = name.value;
+
+        // webSocket = new WebSocket(`ws://localhost:8080/chat2/chatEndpoint?username=${name}&gender=${gender}`);
+        webSocket = new WebSocket(`ws://localhost:8888/chatI/chatEndpoint?username=${name}&gender=${gender}`);
+        webSocket.onopen = onOpen;
+        webSocket.onmessage = onMessage;
+    
+    })
+
+        function  onOpen(){
+
+            console.log(`${name}   ${gender}`)
+            document.getElementById('login').style.display = 'none';
+
+
+    }
+    function onMessage(e){
+        console.log(e.data)
+    }
+
+
+    </script>
+</body>
+
+</html>
